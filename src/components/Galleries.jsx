@@ -3,10 +3,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 
-const Galleries = ({ movie }) => {
+const Galleries = () => {
   const [movies, setMovies] = useState(null);
 
   const apiUrl = process.env.REACT_APP_BE_URL;
+
   const fetchMovies = async () => {
     try {
       const response = await fetch(`${apiUrl}/movies`);

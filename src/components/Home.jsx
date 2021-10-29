@@ -27,7 +27,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchTrailer();
-  }, [vidoes]);
+  }, []);
 
   return (
     <Container fluid className="video-container">
