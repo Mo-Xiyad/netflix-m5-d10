@@ -35,10 +35,6 @@ const MovieDetails = ({ match }) => {
       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTRiMjFlNjRiYjUzZDAwMTViMTllZDYiLCJpYXQiOjE2MzM1NDEzNzEsImV4cCI6MTYzNDc1MDk3MX0.vNKpyht5gUpAzMlt4yhrbDl7C5CbMc1xGKoEUPk1aBg"
     );
 
-    //     headers: {
-    //     "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTRiMjFlNjRiYjUzZDAwMTViMTllZDYiLCJpYXQiOjE2MzM1NDEzNzEsImV4cCI6MTYzNDc1MDk3MX0.vNKpyht5gUpAzMlt4yhrbDl7C5CbMc1xGKoEUPk1aBg"
-    //     }
-
     try {
       const response = await fetch(
         `https://striveschool-api.herokuapp.com/api/comments/${movieiD}`,

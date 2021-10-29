@@ -1,63 +1,41 @@
-import { Component } from "react";
+import { useState, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
+const Galleries = ({ movie }) => {
+  const [movies, setMovies] = useState(null);
 
-class Galleries extends Component {
-  state = {
-    movies: {
-      movies: [],
-    },
-  };
-
-  fetchMovies = async () => {
-    // let movie = "superman"
-
-    let url = `http://www.omdbapi.com/?apikey=2470e3c&s=${this.props.movie}`;
+  const fetchMovies = async () => {
     try {
-      const response = await fetch(url);
-
-      const data = await response.json();
-      // console.log(data)
-      console.log("right after the fetch");
-
+      const response = await fetch(`http://localhost:3001/movies`);
       if (response.ok) {
-        this.setState({
-          movies: {
-            movies: data.Search,
-          },
-        });
-        console.log(this.state.movies.movies.Search);
-      } else {
-        console.log("inside the else of Fetch");
+        const data = await response.json();
+        setMovies(data);
       }
-    } catch (e) {
-      console.log(e);
-      console.log("outside the try block");
+    } catch (error) {
+      console.log(error);
     }
   };
 
-  componentDidMount = async () => {
-    this.fetchMovies();
-    // this.fetchMovies(this.props.searchQuery)// movie=sdsds
-    // console.log("this.state.movies.movies.Search")
-  };
+  useEffect(() => {
+    fetchMovies();
+  }, []);
 
-  render() {
-    return (
-      <>
-        <div className="d-flex justify-content-start">
-          <h3>{this.props.movie}</h3>
-        </div>
-        <div className="d-flex justify-content-start">
-          <Row className="">
-            {this.state.movies.movies.map((m) => (
-              <Col key={m.imdbID} className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 px-1 py-3">
+  return (
+    <>
+      <div className="d-flex justify-content-start">
+        <Row className="">
+          {movies &&
+            movies.map((m) => (
+              <Col
+                key={m.imdbID}
+                className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 px-1 py-3"
+              >
                 <div className="card-gallery card-text-area position-relative">
-                  <Link to={'/movieDetails/' + m.imdbID}>
-                  <img class="img-fluid rounded" src={m.Poster} alt=""/>
-                  </Link>
+                  {/* <Link to={"/movieDetails/" + m.imdbID}> */}
+                  <img class="img-fluid rounded" src={m.Poster} alt="" />
+                  {/* </Link> */}
                   <div class="infos-container">
                     <div class="infos-content">
                       <div class="d-flex align-items-center mb-3">
@@ -124,11 +102,10 @@ class Galleries extends Component {
                 </div>
               </Col>
             ))}
-          </Row>
-        </div>
-      </>
-    );
-  }
-}
+        </Row>
+      </div>
+    </>
+  );
+};
 
 export default Galleries;

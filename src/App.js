@@ -42,8 +42,6 @@ const App = () => {
                 <Container fluid className="mb-5 px-5">
                   <>
                     <Galleries {...routProps} movie="harry potter" />
-                    <Galleries {...routProps} movie="Star wars" />
-                    <Galleries {...routProps} movie="Batman" />
                   </>
                 </Container>
               )
