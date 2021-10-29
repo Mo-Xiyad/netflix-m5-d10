@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 const Galleries = ({ movie }) => {
   const [movies, setMovies] = useState(null);
 
+  const apiUrl = process.env.REACT_APP_BE_URL;
   const fetchMovies = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/movies`);
+      const response = await fetch(`${apiUrl}/movies`);
       if (response.ok) {
         const data = await response.json();
         setMovies(data);
